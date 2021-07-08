@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2021 at 08:04 AM
+-- Generation Time: Jul 08, 2021 at 09:09 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -97,7 +97,8 @@ INSERT INTO `kartukeluarga` (`id`, `nokk`, `kepalakeluarga`, `created_at`, `upda
 (3, '2525251', 'Santoro1', '2021-05-23 01:57:29', '2021-05-23 15:20:30'),
 (5, '1231333', 'Ramlah', '2021-05-23 18:09:52', '2021-05-24 01:09:52'),
 (6, '125556', 'dawdaadawdaw', '2021-05-23 21:30:17', '2021-05-24 04:30:17'),
-(8, '1231231', 'Santoroa', '2021-05-23 22:53:47', '2021-05-24 05:53:47');
+(8, '1231231', 'Santoroa', '2021-05-23 22:53:47', '2021-05-24 05:53:47'),
+(9, '1234654566', 'budi', '2021-07-07 23:36:32', '2021-07-08 06:36:32');
 
 -- --------------------------------------------------------
 
@@ -156,8 +157,9 @@ CREATE TABLE `permintaan` (
 --
 
 INSERT INTO `permintaan` (`id`, `author`, `deskripsi`, `status`, `filesurat`, `created_at`, `updated_at`) VALUES
-(3, 'Admin', 'surat 2', 'Selesai', 'siswa (2).sql', '2021-05-26 23:28:50', '2021-05-27 07:51:09'),
-(4, 'dante', 'surat1', 'Process', 'index (5).php', '2021-05-27 01:01:01', '2021-05-27 08:01:01');
+(1, 'dante', 'surat1', 'Process', 'SURAT_PERNYATAAN_NIKAH.odt', '2021-07-08 00:13:35', '2021-07-08 07:13:35'),
+(2, 'dante', 'surat 2', 'Process', 'fdokumen.com_contoh-surat-keterangan-kepala-desa (1).doc', '2021-07-08 00:23:28', '2021-07-08 07:23:28'),
+(3, 'Febri', 'surat 2', 'Process', 'SURAT_PERNYATAAN_AHLI_WARIS.docx', '2021-07-08 00:27:01', '2021-07-08 07:27:01');
 
 -- --------------------------------------------------------
 
@@ -211,7 +213,11 @@ CREATE TABLE `surat` (
 --
 
 INSERT INTO `surat` (`id`, `namasurat`, `contohsurat`, `created_at`, `updated_at`) VALUES
-(6, 'Surat 1', 'Daftar Pustaka (1).docx', '2021-05-24 20:33:14', '2021-05-25 03:33:14');
+(8, 'Surat Keterangan Desa', 'fdokumen.com_contoh-surat-keterangan-kepala-desa (1).doc', '2021-07-07 23:44:15', '2021-07-08 06:44:15'),
+(9, 'Surat Pernyataan Cerai', 'SURAT_PERNYATAAN_CERAI_docx.docx', '2021-07-07 23:49:28', '2021-07-08 06:49:28'),
+(10, 'Surat Pernyataan Nikah', 'SURAT_PERNYATAAN_NIKAH.odt', '2021-07-07 23:51:04', '2021-07-08 06:51:04'),
+(11, 'Surat Pertanyaan Ahli Waris', 'SURAT_PERNYATAAN_AHLI_WARIS.docx', '2021-07-07 23:52:57', '2021-07-08 06:52:57'),
+(12, 'Surat Keterangan Usaha', 'Surat_Keterangan_Usaha.docx', '2021-07-07 23:53:50', '2021-07-08 06:53:50');
 
 -- --------------------------------------------------------
 
@@ -241,12 +247,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `nik`, `email`, `email_verified_at`, `role`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', '1234', 'admin@admin.com', NULL, 'admin', '$2y$10$z6YLGFzXGnyNOtVysCvBROAilWD18Mr7SkXdnrXTkJp.D0t1MTJke', NULL, NULL, NULL, '2021-05-10 05:39:26', '2021-05-10 05:39:26'),
 (2, 'user', '123', 'user@user.com', NULL, 'user', '$2y$10$vuY08fY3ntosMNMcC0CnZO9DEA4yeHB379LFoOzzMhi4xQqL9g82m', NULL, NULL, NULL, '2021-05-10 05:39:26', '2021-05-10 05:39:26'),
-(5, 'Febri', '555566', NULL, NULL, 'user', '$2y$10$/QCKzs8mDgMVpt3o4auCl.gwlRGY9759ZGChdRwoAtg9jYrxL8M12', NULL, NULL, 'qrMXKeBzhfQxsw0P7ZIAEbEfqZiOJXa8m9YbEg1W4eiOhIk5bNhPQTL8KxPq', '2021-05-23 08:53:14', '2021-05-23 08:53:14'),
+(5, 'Febri', '123456', NULL, NULL, 'user', '$2y$10$/QCKzs8mDgMVpt3o4auCl.gwlRGY9759ZGChdRwoAtg9jYrxL8M12', NULL, NULL, 'Phm4rd346sXnLeXOeCBjI3hpirFdJNPGoUkleKDvzexjztjbySAyFqp1sAr9', '2021-05-23 08:53:14', '2021-05-23 08:53:14'),
 (6, 'Massanta Khalqi', '55211111', NULL, NULL, 'user', '$2y$10$ShgfSa.IItaRXkECzhBn5e5gBl9Qg7OGbsN3LItkX3zHkkVoO/MKi', NULL, NULL, 'I3NBRiwQqQFSZiiNbBOX9qatBvuwT8SnwaZyq0vFnUy8712FcqWzgcT0MAGq', '2021-05-23 22:35:46', '2021-05-23 22:35:46'),
 (7, 'Massanta Khalqi', '55211111', NULL, NULL, 'user', '$2y$10$CbcBEd9CVBCtEiF1228Jvez6KrXzGIl/Zv7MzwQqDoN2jq4oNRjbq', NULL, NULL, '9tlC2PkJzIqDWIkYA8KKAEwUVb1uHGNsk4xl5ITXZ6SEocjZCdXZn252xDgU', '2021-05-23 22:37:41', '2021-05-23 22:37:41'),
 (8, 'Massanta Khalqi', '5555555', NULL, NULL, 'user', '$2y$10$phnYNqaR28fcPP8Q4635g.aKnxV4VWe7r.x4Pq0/iFD7VTE8m4bQK', NULL, NULL, 'LzaTn1UOhw90sgXoZe2IflwTI9pp2GqfALBAhE3O3J8AfiC9eZqSCXGOGp4E', '2021-05-23 22:38:33', '2021-05-23 22:38:33'),
 (9, 'udin', '2131312', NULL, NULL, 'user', '$2y$10$oj/JtZGJCgfy9ASRNXUvSuPXzxbF8vWjBqchz084lTf/EDKxw9/WW', NULL, NULL, '25J0qJPVoS0SzCs47ht49XtKrOczOz6tlx6v9Nq9jwhUO25oLaq2y9zdQZKf', '2021-05-23 22:39:10', '2021-05-23 22:39:10'),
-(10, 'dante', '55555', NULL, NULL, 'user', '$2y$10$QRvclKyjJA5.XmSFDl1UGeXtTaIK1yt9phqs4eMXtq62J6qlBI0Fm', NULL, NULL, 'lpCNhPDO9Ad2YiNAQ06VMBgdPlZLgNOj1bdlFZsKKaGRdeT8OmWTZeXuLTRn', '2021-05-27 00:53:20', '2021-05-27 00:53:20');
+(10, 'dante', '55555', NULL, NULL, 'user', '$2y$10$QRvclKyjJA5.XmSFDl1UGeXtTaIK1yt9phqs4eMXtq62J6qlBI0Fm', NULL, NULL, '8IuZe3nvmzqOFSvJVYwZGeFLq0bSFKPTi95kYaiOv9eF2Q7utRHaFTTs9o4V', '2021-05-27 00:53:20', '2021-05-27 00:53:20');
 
 --
 -- Indexes for dumped tables
@@ -338,7 +344,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kartukeluarga`
 --
 ALTER TABLE `kartukeluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -350,7 +356,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permintaan`
 --
 ALTER TABLE `permintaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -362,7 +368,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

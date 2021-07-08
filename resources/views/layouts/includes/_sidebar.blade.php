@@ -28,14 +28,7 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('admin/kartukeluarga') }}" class="{{Request::is('admin/kartukeluarga')?'active':''}} nav-link ">
-                    <i class="nav-icon fas fa-home"></i>
-                    <p>
-                        Kartu Keluarga
-                    </p>
-                </a>
-            </li>
+
 
             <li class="nav-item
           @if (Request::is('admin/datapenduduk'))
@@ -45,7 +38,10 @@
                 <a href="#" class="nav-link
           @if (Request::is('admin/datapenduduk'))
           {{Request::is('admin/datapenduduk')?'active':''}}
-
+          @elseif(Request::is('admin/kartukeluarga'))
+            {{Request::is('admin/kartukeluarga')?'active':''}}
+             @elseif(Request::is('admin/penduduktetap'))
+            {{Request::is('admin/penduduktetap')?'active':''}}
           @endif ">
                     <i class="nav-icon far fa-newspaper"></i>
                     <p>
@@ -54,6 +50,15 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('admin/kartukeluarga') }}"
+                            class="{{Request::is('admin/kartukeluarga')?'active':''}} nav-link ">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                Kartu Keluarga
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{route('admin/datapenduduk')}}"
                             class="nav-link {{Request::is('admin/datapenduduk')?'active':''}}">
@@ -71,79 +76,81 @@
                     </li>
                     {{-- <li class="nav-item">
                         <a href="{{route('admin/pendudukpindah')}}"
-                            class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>Penduduk Pindah</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin/pendudukpindah')}}"
-                            class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>Penduduk Lahir</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin/pendudukpindah')}}"
-                            class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>Penduduk Meninggal</p>
-                        </a>
-                    </li> --}}
-
-                </ul>
+                    class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Penduduk Pindah</p>
+                    </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('admin/pendudukpindah')}}"
+                    class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Penduduk Lahir</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin/pendudukpindah')}}"
+                    class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Penduduk Meninggal</p>
+                </a>
+            </li> --}}
+
+        </ul>
+        </li>
 
 
 
 
 
-            <li class="nav-item
-          @if (Request::is('admin/datasurat'))
+        <li class="nav-item
+         @if (Request::is('admin/datasurat'))
           {{Request::is('admin/datasurat')?'menu-open':''}}
-
+            @elseif(Request::is('admin/datapermintaan'))
+             {{Request::is('admin/datapermintaan')?'menu-open':''}}
           @endif ">
-                <a href="#" class="nav-link
+            <a href="#" class="nav-link
           @if (Request::is('admin/datasurat'))
           {{Request::is('admin/datasurat')?'active':''}}
-
+            @elseif(Request::is('admin/datapermintaan'))
+            {{Request::is('admin/datapermintaan')?'active':''}}
           @endif ">
-                    <i class="nav-icon far fa-newspaper"></i>
-                    <p>
-                        Kelola Surat
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="{{route('admin/datasurat')}}"
-                            class="nav-link {{Request::is('admin/datasurat')?'active':''}}">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>Data Surat</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin/datapermintaan')}}"
-                            class="nav-link {{Request::is('admin/datapermintaan')?'active':''}}">
-                            <i class="fas fa-list nav-icon"></i>
-                            <p>Data Permintaan</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                <i class="nav-icon far fa-newspaper"></i>
+                <p>
+                    Kelola Surat
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{route('admin/datasurat')}}"
+                        class="nav-link {{Request::is('admin/datasurat')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Contoh Surat</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin/datapermintaan')}}"
+                        class="nav-link {{Request::is('admin/datapermintaan')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Data Permintaan</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
-            <li class="nav-item">
-                <a href="{{ route('logout') }}" class="nav-link"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="nav-icon fas fa-sign-out-alt"></i>
-                    <p>
-                        Sign Out
-                    </p>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </a>
-            </li>
+        <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                    Sign Out
+                </p>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </a>
+        </li>
 
 
         </ul>
@@ -180,14 +187,43 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{route('user/datapermintaan')}}" class="{{Request::is('user/datapermintaan')?'active':''}} nav-link ">
-                    <i class="nav-icon fas fa-home"></i>
-                    <p>
-                        Data Permintaan
-                    </p>
-                </a>
-            </li>
+
+            <li class="nav-item
+          @if (Request::is('user/datasurat'))
+          {{Request::is('user/datasurat')?'menu-open':''}}
+            @elseif(Request::is('user/datapermintaan'))
+             {{Request::is('user/datapermintaan')?'menu-open':''}}
+          @endif ">
+            <a href="#" class="nav-link
+          @if (Request::is('user/datasurat'))
+          {{Request::is('user/datasurat')?'active':''}}
+            @elseif(Request::is('user/datapermintaan'))
+            {{Request::is('user/datapermintaan')?'active':''}}
+          @endif ">
+                <i class="nav-icon far fa-newspaper"></i>
+                <p>
+                    Kelola Surat
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a href="{{route('user/datasurat')}}"
+                        class="nav-link {{Request::is('user/datasurat')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Contoh Surat</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('user/datapermintaan')}}"
+                        class="nav-link {{Request::is('user/datapermintaan')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Data Permintaan</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
 
 
 

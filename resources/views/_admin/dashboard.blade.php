@@ -32,12 +32,12 @@
 
 
 
-                            <h3>1</h3>
+                            <h3>{{ $user }}</h3>
 
-                            <p>Penduduk Pindah</p>
+                            <p>Data User</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-bullhorn"></i>
+                            <i class="fas fa-user"></i>
                         </div>
                         <a href="/admin/pengumuman" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
@@ -48,12 +48,12 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>2</h3>
+                            <h3>{{ $datapenduduk }}</h3>
 
-                            <p>Penduduk Meninggal</p>
+                            <p>Data Penduduk</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <a href="/admin/agenda" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
@@ -64,12 +64,12 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>3</h3>
+                            <h3>{{ $kk }}</h3>
 
-                            <p>Penduduk Pendatang</p>
+                            <p>Kartu Keluarga</p>
                         </div>
                         <div class="icon">
-                            <i class="far fa-newspaper"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <a href="/admin/listberita" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
@@ -80,12 +80,12 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>4</h3>
+                            <h3>{{ $surat }}</h3>
 
-                            <p>Penduduk Lahir</p>
+                            <p>Data Surat</p>
                         </div>
                         <div class="icon">
-                            <i class="far fa-user"></i>
+                            <i class="far fa-newspaper"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -96,12 +96,8 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-
-
-
-                            <h3>1</h3>
-
-                            <p>Penduduk Tetap</p>
+                            <h3>{{ $permintaan }}</h3>
+                            <p>Data Permintaan</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-bullhorn"></i>
@@ -111,52 +107,9 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>2</h3>
 
-                            <p>Total Penduduk</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <a href="/admin/agenda" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>3</h3>
 
-                            <p>Total User</p>
-                        </div>
-                        <div class="icon">
-                            <i class="far fa-newspaper"></i>
-                        </div>
-                        <a href="/admin/listberita" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>4</h3>
-
-                            <p>Penduduk Laporan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="far fa-user"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
             </div>
             <!-- /.row -->
             <!-- Main row -->

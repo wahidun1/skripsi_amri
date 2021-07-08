@@ -44,7 +44,7 @@
                         <div class="card-body">
 
                             <table id="tabledata" class="table table-bordered table-striped"
-                                style="font-size: 14px">
+                                style="font-size: 14px;width:100%;">
                                 <thead>
                                     <tr>
 

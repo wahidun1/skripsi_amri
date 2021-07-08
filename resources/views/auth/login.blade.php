@@ -28,7 +28,7 @@
             <div class="card-body">
 
 
-                <form method="POST" id="quickForm" action="{{ route('login') }}">
+                <form method="POST" id="quickForm" action="{{ route('proses_login') }}">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">
                         <input type="number" id="email" name="nik" class="form-control" placeholder="NIK">

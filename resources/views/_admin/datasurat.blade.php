@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Surat</h1>
+                    <h1 class="m-0"></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/{{auth()->user()->role}}/dashboard">Home</a></li>
-                        <li class="breadcrumb-item active">Data Surat</li>
+                        <li class="breadcrumb-item active">Contoh Surat</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -36,20 +36,23 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            @if (auth()->user()->role=='admin')
 
-                            <button type="button" class="btn-sm btn-primary float-right" data-toggle="modal"
-                                data-target="#modaltambah"><i class="fas fa-plus"></i> Tambah Data</button>
+                                                        <button type="button" class="btn-sm btn-primary float-right" data-toggle="modal"
+                                                            data-target="#modaltambah"><i class="fas fa-plus"></i> Tambah Data</button>
+
+                            @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
 
                             <table id="datapengumuman" class="table table-bordered table-striped"
-                                style="font-size: 14px">
+                                style="font-size: 14px;width:100%;">
                                 <thead>
                                     <tr>
                                         <th style="width: 5%">No</th>
-                                        <th>Nama Surat</th>
                                         <th>Contoh Surat</th>
+                                        <th>Nama File</th>
                                         <th style="width: 17%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,21 +61,30 @@
                                     @foreach ( $data as $key=>$datas )
                                     <tr>
                                         <td>{{++$key}}</td>
-                                    <td>{{$datas->namasurat}}</td>
-                                    <td>{{$datas->contohsurat}}</td>
+                                        <td>{{$datas->namasurat}}</td>
+                                        <td>{{$datas->contohsurat}}</td>
 
-                                    <td class="project-actions text-right">
-                                        <div>
+                                        <td class="project-actions text-right">
+                                            <div>
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="datasurat/download/{{ $datas->contohsurat }}"
+                                                    data-toggle="tooltip" data-placement="top" title="Download">
+                                                    <i class="fas fa-download">
+                                                    </i>
 
-                                            <a class="btn btn-danger btn-sm delete" href="#" data-toggle="tooltip"
-                                                data-placement="top" title="Hapus" data-id={{ $datas->id }}>
-                                                <i class="fas fa-trash">
-                                                </i>
+                                                </a>
+                                                @if (auth()->user()->role=='admin')
+                                                <a class="btn btn-danger btn-sm delete" href="#" data-toggle="tooltip"
+                                                    data-placement="top" title="Hapus" data-id={{ $datas->id }}>
+                                                    <i class="fas fa-trash">
+                                                    </i>
 
-                                            </a>
+                                                </a>
+                                                @endif
 
-                                        </div>
-                                    </td>
+
+                                            </div>
+                                        </td>
 
                                     </tr>
                                     @endforeach
@@ -107,8 +119,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/admin/datasurat/tambah" method="POST" id="quickForm"
-                        enctype="multipart/form-data">
+                    <form action="/admin/datasurat/tambah" method="POST" id="quickForm" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="surat">Nama Surat</label>
@@ -118,8 +129,8 @@
                         <div class="form-group">
                             <label>File</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="contohsurat"
-                                    name="contohsurat" required>
+                                <input type="file" class="custom-file-input" id="contohsurat" name="contohsurat"
+                                    required>
                                 <label class="custom-file-label" for="contohsurat">Choose file</label>
                                 <span id="exampleInputEmail1-error" class="error invalid-feedback" style=""></span>
                             </div>

@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Permintaan;
+use App\Models\Surat;
 use Illuminate\Support\Facades\Storage;
 
 class DataPermintaanController extends Controller
 {
     public function index()
     {
-        $data = Permintaan::orderBy('id', 'desc')->get();
-        return view('_admin.permintaan', compact('data'));
+        if (auth()->user()->role == 'admin') {
+            $data = Permintaan::orderBy('id', 'desc')->get();
+        } elseif (auth()->user()->role == 'user') {
+
+            $data = Permintaan::where('author', auth()->user()->name)->orderBy('id', 'desc')->get();
+        }
+        $surat = Surat::orderBy('id', 'desc')->get();
+        return view('_admin.permintaan', compact('data', 'surat'));
     }
     public function tambah(Request $req)
     {
@@ -46,5 +53,10 @@ class DataPermintaanController extends Controller
     {
         $data = Permintaan::find($id)->update(['deskripsi' => $req->deskripsi, 'status' => $req->status]);
         return redirect()->back()->with('success', 'Berita Berhasil Diubah');
+    }
+
+    public function download($filesurat)
+    {
+        return  response()->download('storage/permintaan/' . auth()->user()->name . '/' . $filesurat);
     }
 }

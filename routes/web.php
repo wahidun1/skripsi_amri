@@ -22,15 +22,19 @@ use App\Http\Controllers\PendudukPindahController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('auth.login');
 });
-Route::get('/loguot', [AuthController::class, 'logout'])->name('loguot');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 // Route::get('/master', function () {
 //     return view('layouts.masteradmin');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 
 
@@ -57,11 +61,13 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->group(function () {
     Route::get('/datasurat', [DataSuratController::class, 'index'])->name('admin/datasurat');
     Route::post('/datasurat/tambah', [DataSuratController::class, 'tambah']);
     Route::get('/datasurat/{id}/hapus', [DataSuratController::class, 'hapus']);
+    Route::get('/datasurat/download/{contohsurat}', [DataSuratController::class, 'download']);
 
     Route::get('/datapermintaan', [DataPermintaanController::class, 'index'])->name('admin/datapermintaan');
     Route::post('/datapermintaan/tambah', [DataPermintaanController::class, 'tambah']);
     Route::get('/datapermintaan/{id}/hapus', [DataPermintaanController::class, 'hapus']);
     Route::post('/datapermintaan/{id}/edit', [DataPermintaanController::class, 'edit']);
+    Route::get('/datapermintaan/download/{filesurat}', [DataPermintaanController::class, 'download']);
 });
 
 
@@ -71,6 +77,9 @@ Route::prefix('user')->middleware('auth', 'role:user')->group(function () {
 
     Route::get('/datapermintaan', [DataPermintaanController::class, 'index'])->name('user/datapermintaan');
     Route::post('/datapermintaan/tambah', [DataPermintaanController::class, 'tambah']);
+    Route::get('/datapermintaan/download/{filesurat}', [DataPermintaanController::class, 'download']);
+    Route::get('/datasurat/download/{contohsurat}', [DataSuratController::class, 'download']);
+    Route::get('/datasurat', [DataSuratController::class, 'index'])->name('user/datasurat');
 });
 
 

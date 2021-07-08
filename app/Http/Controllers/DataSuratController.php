@@ -44,4 +44,8 @@ class DataSuratController extends Controller
         //     Storage::deleteDirectory('/public/guru/' . $guru->user->email);
         // }
     }
+    public function download($contohsurat)
+    {
+        return  response()->download('storage/file/' . $contohsurat);
+    }
 }
