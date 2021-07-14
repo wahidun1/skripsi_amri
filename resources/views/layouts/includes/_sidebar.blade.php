@@ -28,7 +28,14 @@
                     </p>
                 </a>
             </li>
-
+            {{-- <li class="nav-item">
+                <a href="{{route('admin/profile')}}" class="{{Request::is('admin/profile')?'active':''}} nav-link ">
+                    <i class="nav-icon fas fa-home"></i>
+                    <p>
+                        Profile
+                    </p>
+                </a>
+            </li> --}}
 
             <li class="nav-item
           @if (Request::is('admin/datapenduduk'))
@@ -136,6 +143,13 @@
                         <p>Data Permintaan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin/datapengaduan')}}"
+                        class="nav-link {{Request::is('admin/datapengaduan')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Data Pengaduan</p>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -193,12 +207,16 @@
           {{Request::is('user/datasurat')?'menu-open':''}}
             @elseif(Request::is('user/datapermintaan'))
              {{Request::is('user/datapermintaan')?'menu-open':''}}
+             @elseif(Request::is('user/datapengaduan'))
+             {{Request::is('user/datapengaduan')?'menu-open':''}}
           @endif ">
             <a href="#" class="nav-link
           @if (Request::is('user/datasurat'))
           {{Request::is('user/datasurat')?'active':''}}
             @elseif(Request::is('user/datapermintaan'))
             {{Request::is('user/datapermintaan')?'active':''}}
+            @elseif(Request::is('user/datapengaduan'))
+            {{Request::is('user/datapengaduan')?'active':''}}
           @endif ">
                 <i class="nav-icon far fa-newspaper"></i>
                 <p>
@@ -219,6 +237,13 @@
                         class="nav-link {{Request::is('user/datapermintaan')?'active':''}}">
                         <i class="fas fa-list nav-icon"></i>
                         <p>Data Permintaan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('user/datapengaduan')}}"
+                        class="nav-link {{Request::is('user/datapengaduan')?'active':''}}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Data Pengaduan</p>
                     </a>
                 </li>
             </ul>

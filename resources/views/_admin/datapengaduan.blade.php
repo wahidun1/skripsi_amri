@@ -40,7 +40,7 @@
                         <div class="card-header">
                             <div class="card-title">
 
-                                Data Permintaan
+                                Data Pengaduan
                             </div>
                             @if(auth()->user()->role=='user')
                             <button type="button" class="btn-sm btn-primary float-right" data-toggle="modal"
@@ -50,17 +50,18 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <table id="datapengumuman" class="table table-bordered table-striped"
+                            <table id="datapengumuman" class="table table-bordered table-striped text-center"
                                 style="font-size: 14px;width:100%">
                                 <thead>
                                     <tr>
                                         <th style="width: 5%">No</th>
-                                        <th>Author</th>
-                                        <th>Deskripsi</th>
-                                        <th>Status</th>
+                                        <th>Nama</th>
+                                        <th>No HP</th>
+                                        <th>Email</th>
+                                        <th>Pertanyaan</th>
                                         <th>File</th>
-                                        <th>Dibuat</th>
-
+                                        <th>Status</th>
+                                        <th>Tanggal Input</th>
 
                                         <th style="width: 17%">Aksi</th>
 
@@ -71,26 +72,41 @@
                                     @foreach ( $data as $key=>$datas )
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$datas->author}}</td>
-                                        <td>{{$datas->deskripsi}}</td>
+                                        <td>{{$datas->nama}}</td>
+                                        <td>{{$datas->nohp}}</td>
+
+                                        @if ($datas->email==null)
+                                        <td>-</td>
+                                        @else
+                                        <td>{{$datas->email}}</td>
+                                        @endif
+
+                                        <td>{{$datas->pertanyaan}}</td>
+
+                                        @if ($datas->filepengaduan==null)
+                                        <td>-</td>
+                                        @else
+                                        <td>{{$datas->filepengaduan}}</td>
+                                        @endif
+
                                         <td>@if($datas->status=='Process')
                                             <span class="right badge badge-danger">{{ $datas->status }}</span>
                                             @elseif($datas->status=='Selesai')
                                             <span class="right badge badge-primary">{{ $datas->status }}</span>
                                             @endif
                                         </td>
-                                        <td>{{$datas->filesurat}}</td>
                                         <td>{{$datas->created_at->format('d/m/Y')}}</td>
-                                        @if (auth()->user()->role=='admin')
+
                                         <td class="project-actions text-right">
                                             <div>
                                                 <a class="btn btn-primary btn-sm"
-                                                    href="datapermintaan/download/{{ $datas->filesurat }}"
+                                                    href="datapengaduan/download/{{ $datas->filepengaduan }}"
                                                     data-toggle="tooltip" data-placement="top" title="Download">
                                                     <i class="fas fa-download">
                                                     </i>
 
                                                 </a>
+                                                @if (auth()->user()->role=='admin')
                                                 <a class="btn btn-warning btn-sm" href="#"
                                                     data-target="#editModal-{{$datas->id}}" data-toggle="modal"
                                                     data-toggle="tooltip" data-placement="top" title="Edit">
@@ -98,34 +114,18 @@
                                                     </i>
 
                                                 </a>
+                                                @endif
+                                                @if($datas->status=='Process')
                                                 <a class="btn btn-danger btn-sm delete" href="#" data-toggle="tooltip"
                                                     data-placement="top" title="Hapus" data-id={{ $datas->id }}>
                                                     <i class="fas fa-trash">
                                                     </i>
 
                                                 </a>
+                                                @endif
 
                                             </div>
                                         </td>
-                                        @elseif(auth()->user()->role=='user')
-                                        <td class="project-actions text-right">
-                                            <div>
-                                                <a class="btn btn-primary btn-sm"
-                                                    href="datapermintaan/download/{{ $datas->filesurat }}"
-                                                    data-toggle="tooltip" data-placement="top" title="Download">
-                                                    <i class="fas fa-download">
-                                                    </i>
-                                                </a>
-                                                {{-- <a class="btn btn-danger btn-sm delete" href="#" data-toggle="tooltip"
-                                                    data-placement="top" title="Hapus" data-id={{ $datas->id }}>
-                                                    <i class="fas fa-trash">
-                                                    </i>
-
-                                                </a> --}}
-                                            </div>
-
-                                        </td>
-                                        @endif
 
 
                                     </tr>
@@ -133,7 +133,7 @@
                                 </tbody>
 
                             </table>
-                            <span class="right "> <b><i>* Apabila status telah selesai silahkan ambil hasil document di kantor desa</i></b></span>
+
 
 
                         </div>
@@ -158,25 +158,36 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Permintaan Surat</h4>
+                    <h4 class="modal-title">Tambah Data Pengaduan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/user/datapermintaan/tambah" method="POST" id="quickForm"
+                    <form action="/user/datapengaduan/tambah" method="POST" id="quickForm"
                         enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="nama">Nama Surat</label>
-                            <input type="text" class="form-control" id="nama" placeholder="Input Nama Surat"
-                                name="deskripsi" required>
+                            <label for="nohp">Nomor HP</label>
+                            <input type="number" class="form-control" id="nohp" placeholder="Input Nomor HP" name="nohp"
+                                required>
                         </div>
                         <div class="form-group">
-                            <label>File Surat</label>
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Input Email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Deskripsikan pertanyaan atau kendalamu</label>
+                            <textarea class="form-control" name="pertanyaan" rows="3" placeholder="Enter ..."
+                                required></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>File Pengaduan</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="filesurat" name="filesurat" required>
-                                <label class="custom-file-label" for="filesurat">Choose file</label>
+                                <input type="file" class="custom-file-input" id="filepengaduan" name="filepengaduan">
+                                <label class="custom-file-label" for="filepengaduan">Choose file</label>
                                 <span id="exampleInputEmail1-error" class="error invalid-feedback" style=""></span>
                             </div>
                         </div>
@@ -211,18 +222,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/admin/datapermintaan/{{$feb->id}}/edit" method="POST" enctype="multipart/form-data">
+                    <form action="/admin/datapengaduan/{{$feb->id}}/edit" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="author">Author</label>
-                            <input name="author" type="text" class="form-control" id="author"
-                                aria-describedby="emailHelp" placeholder="Author" value="{{ $feb->author }}" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="deskripsi">Deskripsi</label>
-                            <input name="deskripsi" type="text" class="form-control" id="deskripsi"
-                                aria-describedby="emailHelp" placeholder="Deskripsi" value="{{ $feb->deskripsi }}">
-                        </div>
+
 
                         <div class="form-group {{ $errors->has('status')?' has-error':'' }}">
                             <label for="status">Status</label>
@@ -259,7 +261,7 @@
 
         Swal.fire({
             title: 'Yakin ?',
-            text: "Mau Dihapus Data Pegawai dengan id " + data_id + " ??",
+            text: "Apakah anda yakin ingin dihapus ??",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -267,7 +269,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location = "/admin/datapermintaan/" + data_id + "/hapus"
+                window.location = "/user/datapengaduan/" + data_id + "/hapus"
             }
         })
     });

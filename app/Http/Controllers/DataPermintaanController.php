@@ -39,7 +39,7 @@ class DataPermintaanController extends Controller
     {
         $data = Permintaan::find($id);
         $image_path = 'public/permintaan/' . $data->author . '/' . $data->filesurat;
-
+        // dd(Storage::exists($image_path));
         if (Storage::exists($image_path)) {
 
             Storage::delete($image_path);
@@ -52,11 +52,11 @@ class DataPermintaanController extends Controller
     public function edit(Request $req, $id)
     {
         $data = Permintaan::find($id)->update(['deskripsi' => $req->deskripsi, 'status' => $req->status]);
-        return redirect()->back()->with('success', 'Berita Berhasil Diubah');
+        return redirect()->back()->with('success', 'Data Berhasil Diubah');
     }
 
-    public function download($filesurat)
+    public function download($filepengaduan)
     {
-        return  response()->download('storage/permintaan/' . auth()->user()->name . '/' . $filesurat);
+        return  response()->download('storage/permintaan/' . auth()->user()->name . '/' . $filepengaduan);
     }
 }

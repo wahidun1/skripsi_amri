@@ -33,6 +33,17 @@ class DataPendudukController extends Controller
         $data = DataPenduduk::create($request->all());
         return redirect()->back()->with('sukses', 'Data berhasil ditambah');
     }
+
+    public function edit(Request $request, $id)
+    {
+        $data = DataPenduduk::find($id);
+
+        $user = User::where(['id' => $data->user_id])->update(['nik' => $request->nik]);
+
+
+        $data->update($request->all());
+        return redirect()->back()->with('sukses', 'Data berhasil diupdate');
+    }
     public function detail($id)
     {
         $data = DataPenduduk::find($id);

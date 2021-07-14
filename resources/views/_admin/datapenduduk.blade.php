@@ -116,7 +116,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Guru</h4>
+                    <h4 class="modal-title">Tambah Data Penduduk</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -207,8 +207,8 @@
                                                 <select name="kartukeluarga_id" class="form-control select2bs4" id="kartukeluarga_id" style="width: 100%;"
                                                     required>
                                                     <option value="">-pilih-</option>
-                                                    @foreach ($kk as $kk)
-                                                    <option value="{{ $kk->id }}">{{ $kk->nokk }} - {{ $kk->kepalakeluarga }}</option>
+                                                    @foreach ($kk as $kk2)
+                                                    <option value="{{ $kk2->id }}">{{ $kk2->nokk }} - {{ $kk2->kepalakeluarga }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -300,60 +300,174 @@
 
 
     {{-- Modal edit Data --}}
-    {{-- @foreach ($data as $feb)
+    @foreach ($data as $feb)
     <div class="modal fade" id="editModal-{{$feb->id}}">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-xl ">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Guru</h4>
+                <h4 class="modal-title">Edit Data Penduduk</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/{{auth()->user()->role}}/guru/{{$feb->id}}/edit" method="POST"
+                <form action="/admin/datapenduduk/{{$feb->id}}/edit" method="POST"
                     enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="nama_guru">Nama</label>
-                        <input name="nama_guru" type="text" class="form-control" id="nama_guru"
-                            aria-describedby="emailHelp" placeholder="Nama" value="{{ $feb->nama_guru }}" required>
+                        <div class="row">
+                                <div class="col-6">
+                                    <div class="card card-secondary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Form Input</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="nik">NIK *</label>
+                                                <input type="number" class="form-control" id="nik" value="{{ $feb->nik }}"
+                                                    placeholder="Input NIK" name="nik" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="nama">Nama *</label>
+                                                <input type="text" class="form-control" id="nama"
+                                                    placeholder="Input Nama" value="{{ $feb->nama }}" name="nama" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tempatlahir">Tempat Lahir *</label>
+                                                <input type="text" class="form-control" id="tempatlahir"
+                                                    placeholder="Input Tempat Lahir" name="tempatlahir" value="{{ $feb->tempatlahir }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tgllahir">Tanggal Lahir *</label>
+                                                <input type="date" class="form-control" id="tgllahir"
+                                                    placeholder="Input Tanggal Lahir" name="tgllahir" value="{{ $feb->tgllahir->format('Y-m-d') }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jk">Jenis Kelamin *</label>
+                                                <select name="jeniskelamin" class="form-control" id="jk" required>
+                                                    <option value="Laki-Laki" @if($feb->jeniskelamin=='Laki-Laki') selected @endif>Laki-Laki</option>
+                                                    <option value="Perempuan" @if($feb->jeniskelamin=='Perempuan') selected @endif>Perempuan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="statuskawin">Status Kawin *</label>
+                                                <select name="statuskawin" class="form-control" id="statuskawin"
+                                                    required>
+                                                    <option value="Sudah Kawin" @if($feb->statuskawin=='Sudah Kawin') selected @endif>Sudah Kawin</option>
+                                                    <option value="Belum Kawin" @if($feb->statuskawin=='Belum Kawin') selected @endif>Belum Kawin</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alamat">Alamat</label>
+                                                <textarea class="form-control" id="alamat" name="alamat" rows="3"
+                                                    placeholder="Enter ..." required>{{ $feb->alamat }}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jenispenduduk">Jenis Penduduk *</label>
+                                                <select name="jenispenduduk" class="form-control" id="jenispenduduk"
+                                                    required>
+                                                    <option value="Tetap" @if($feb->jenispenduduk=='Tetap') selected @endif>Tetap</option>
+                                                    <option value="Tidak Tetap" @if($feb->jenispenduduk=='Tidak Tetap') selected @endif>Tidak Tetap</option>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Data Penduduk</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <!-- form start -->
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="kartukeluarga_id">Kepala Keluarga *</label>
+                                                <select name="kartukeluarga_id" class="form-control select2bs4" id="kartukeluarga_id" style="width: 100%;"
+                                                    required>
+                                                    <option value="">-pilih-</option>
+                                                    @foreach ($kk as $kk1)
+                                                    <option value="{{ $kk1->id }}" @if($feb->kartukeluarga_id==$kk1->id) selected @endif>{{ $kk1->nokk }} - {{ $kk1->kepalakeluarga }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pekerjaan">Pekerjaan *</label>
+                                                <input type="text" class="form-control" id="pekerjaan"
+                                                    placeholder="Input Pekerjaan" name="pekerjaan" value="{{$feb->pekerjaan }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pendidikan">Pendidikan</label>
+                                                <select name="pendidikan" class="form-control select2bs4" id="pendidikan" required>
+                                                    <option value="SD" @if($feb->pendidikan=='SD') selected @endif>SD</option>
+                                                    <option value="SMP"@if($feb->pendidikan=='SMP') selected @endif>SMP</option>
+                                                    <option value="SMA"@if($feb->pendidikan=='SMA') selected @endif>SMA</option>
+                                                    <option value="D1"@if($feb->pendidikan=='D1') selected @endif>D1</option>
+                                                    <option value="D2"@if($feb->pendidikan=='D2') selected @endif>D2</option>
+                                                    <option value="D3"@if($feb->pendidikan=='D3') selected @endif>D3</option>
+                                                    <option value="S1"@if($feb->pendidikan=='S1') selected @endif>S1</option>
+                                                    <option value="S2"@if($feb->pendidikan=='S2') selected @endif>S2</option>
+                                                    <option value="S3"@if($feb->pendidikan=='S3') selected @endif>S3</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="agama">Agama</label>
+                                                <select name="agama" class="form-control" id="agama" required>
+                                                    <option value="Islam" @if($feb->agama=='Islam') selected @endif>Islam</option>
+                                                    <option value="Kristen" @if($feb->agama=='Islam') selected @endif>Kristen</option>
+                                                    <option value="Hindu" @if($feb->agama=='Hindu') selected @endif>Hindu</option>
+                                                    <option value="Budha" @if($feb->agama=='Budha') selected @endif>Budha</option>
+                                                    <option value="Konghucu" @if($feb->agama=='Konghucu') selected @endif>Konghucu</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lurahdesa">Lurah/Desa</label>
+                                                <input type="text" class="form-control" id="lurahdesa" value="{{ $feb->lurahdesa }}"
+                                                    placeholder="Input" name="lurahdesa" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kecamatan">Kecamatan</label>
+                                                <input type="text" class="form-control" id="kecamatan"
+                                                    placeholder="Input Kecamatan" name="kecamatan" value="{{ $feb->kecamatan }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kabupaten">Kabupaten</label>
+                                                <input type="text" class="form-control" id="kabupaten"
+                                                    placeholder="Input Kabupaten" name="kabupaten" value="{{ $feb->kabupaten }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="provinsi">Provinsi</label>
+                                                <input type="text" class="form-control" id="provinsi"
+                                                    placeholder="Input Provinsi" name="provinsi" value="{{ $feb->provinsi }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="negara">Negara</label>
+                                                <select name="negara" class="form-control" id="negara" required>
+                                                    <option value="WNI" @if($feb->negara=='WNI') selected @endif>WNI</option>
+                                                    <option value="WNA" @if($feb->negara=='WNA') selected @endif>WNA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- /.card-body -->
+
+
+                                    </div>
+                                </div>
+                            </div>
                     </div>
 
-                    <div class="form-group {{ $errors->has('mapel')?' has-error':'' }}">
-                        <label for="mapel">Mapel</label>
-                        <select name="mapel_id" class="form-control" id="mapel" required>
-                            @foreach ($mapel1 as $row)
-                            <option value="{{ $row->id }}" @if($row->id==$feb->mapel_id) selected
-                                @endif>{{ $row->mapel_nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="jk">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-control" id="jk" required>
-                            <option value="Laki-Laki" @if($feb->jenis_kelamin=='Laki-Laki') selected
-                                @endif>Laki-Laki</option>
-                            <option value="Perempuan" @if($feb->jenis_kelamin=='Perempuan') selected
-                                @endif>Perempuan</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nohp">No HP</label>
-                        <input name="tempat_lahir" type="number" value="{{ $feb->no_hp }}" class="form-control"
-                            id="nohp" aria-describedby="emailHelp" placeholder="Tempat Lahir" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tgllhir">Tanggal Lahir</label>
-                        <input name="tanggal_lahir" type="date" value="{{ $feb->tanggal_lahir->format('Y-m-d') }}"
-                            class="form-control" id="tgllhir" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input name="password" type="password" class="form-control" id="password">
-                    </div>
 
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -365,7 +479,7 @@
         </div>
     </div>
 </div>
-@endforeach --}}
+@endforeach
 <!-- end modal edit data -->
 </div>
 
