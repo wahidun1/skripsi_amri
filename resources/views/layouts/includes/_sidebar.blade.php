@@ -70,17 +70,17 @@
                         <a href="{{route('admin/datapenduduk')}}"
                             class="nav-link {{Request::is('admin/datapenduduk')?'active':''}}">
                             <i class="fas fa-list nav-icon"></i>
-                            <p>Semua Data Penduduk</p>
+                            <p>Data Penduduk</p>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{route('admin/penduduktetap')}}"
                             class="nav-link {{Request::is('admin/penduduktetap')?'active':''}}">
                             <i class="fas fa-list nav-icon"></i>
                             <p>Penduduk Tetap</p>
                         </a>
-                    </li>
+                    </li> -->
                     {{-- <li class="nav-item">
                         <a href="{{route('admin/pendudukpindah')}}"
                     class="nav-link {{Request::is('admin/pendudukpindah')?'active':''}}">
