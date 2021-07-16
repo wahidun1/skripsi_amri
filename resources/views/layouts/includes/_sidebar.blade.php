@@ -24,7 +24,7 @@
                 <a href="{{route('admin/dashboard')}}" class="{{Request::is('admin/dashboard')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-home"></i>
                     <p>
-                        Dashboard
+                        Dashboards
                     </p>
                 </a>
             </li>
