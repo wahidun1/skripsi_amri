@@ -24,7 +24,7 @@
                 <a href="{{route('admin/dashboard')}}" class="{{Request::is('admin/dashboard')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-home"></i>
                     <p>
-                        Dashboards
+                        Dashboard
                     </p>
                 </a>
             </li>
@@ -48,7 +48,7 @@
                 <a href="{{route('admin/datasurat')}}" class="{{Request::is('admin/datasurat')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-file-download"></i>
                     <p>
-                        Contoh Surat
+                        Contoh Data Surat
                     </p>
                 </a>
             </li>
@@ -56,7 +56,7 @@
                 <a href="{{route('admin/datapermintaan')}}" class="{{Request::is('admin/datapermintaan')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-server"></i>
                     <p>
-                        Data Permintaan
+                        Data Permintaan Surat
                     </p>
                 </a>
             </li>
@@ -99,7 +99,7 @@
                     <a href="{{route('admin/datapermintaan')}}"
                         class="nav-link {{Request::is('admin/datapermintaan')?'active':''}}">
                         <i class="fas fa-list nav-icon"></i>
-                        <p>Data Permintaan</p>
+                        <p>Data Permintaan Surat</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -117,7 +117,7 @@
                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
-                    Sign Out
+                    LogOut
                 </p>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
@@ -165,7 +165,7 @@
                 <a href="{{route('user/datasurat')}}" class="{{Request::is('user/datasurat')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-file-download"></i>
                     <p>
-                        Contoh Surat
+                        Contoh Data Surat
                     </p>
                 </a>
             </li>
@@ -173,7 +173,7 @@
                 <a href="{{route('user/datapermintaan')}}" class="{{Request::is('user/datapermintaan')?'active':''}} nav-link ">
                     <i class="nav-icon fas fa-server"></i>
                     <p>
-                        Data Permintaan
+                        Data Permintaan Surat
                     </p>
                 </a>
             </li>
@@ -195,7 +195,7 @@
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>
-                        Sign Out
+                        LogOut
                     </p>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

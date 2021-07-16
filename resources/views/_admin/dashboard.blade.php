@@ -26,10 +26,15 @@
             <div style="color: white;">
 
                 <h5><center>
-                visi :
+<h3>
+               <b>Visi :</b> 
+</h3>
                 <br>
-                “Bersama Kita Bisa”. <br>
-    misi : <br>
+                “Bersama Kita Bisa”. <br><br>
+    <h3>
+                <b>Misi :</b>
+</h3>
+                <br>
     1.	Memperkokoh persatuan dan kerukunan antar warga Desa Bunga Tanjung tanpa memandang agama, status sosial, golongan maupun suku/ ras. <br>
     2.	Meningkatkan sistem pelayanan kepada masyarakat. <br>
     3.	Meningkatkan mutu kesejahteraan masyarakat untuk mencapai taraf kehidupan yang lebih baik dan layak sehingga menjadi Desa yang maju dan mandiri. <br>
@@ -138,8 +143,11 @@
 
 <style>
     .bgcustom{
-        background:  url("/kantordesa.jpg");
+        background:  url("/kantorDesaBungaTanjung - Copy.jpg");
          height: 100%;
+/* 
+         filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -147,6 +155,8 @@
   background-size: cover;
 
     }
+
+    
 
 </style>
 @endsection
